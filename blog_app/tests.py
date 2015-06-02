@@ -1,8 +1,10 @@
+# Create your tests here.
+
 import datetime
+
+from django.utils import timezone
 from django.test import TestCase
 
-# Create your tests here.
-from django.utils import timezone
 from .models import Post
 
 
@@ -20,8 +22,7 @@ class PostMethodTests(TestCase):
         """
         was_published_recently() should return False for posts whose
         pub_date is older than 1 day.
-        """
-
+         """
         time = timezone.now() - datetime.timedelta(days=30)
         old_post = Post(pub_date=time)
         self.assertEqual(old_post.was_published_recently(), False)
