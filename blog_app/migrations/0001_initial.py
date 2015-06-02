@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='Comment',
             fields=[
                 ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
-                ('text', models.CharField(max_length=256)),
+                ('comment_text', models.CharField(max_length=256)),
                 ('votes', models.IntegerField(default=0)),
             ],
         ),
@@ -22,7 +22,8 @@ class Migration(migrations.Migration):
             name='Post',
             fields=[
                 ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
-                ('text', models.CharField(max_length=500)),
+                ('post_title', models.CharField(max_length=100, verbose_name='Заголовок новости')),
+                ('post_text', models.CharField(max_length=500, verbose_name='Текст новости')),
                 ('pub_date', models.DateTimeField(verbose_name='date published')),
             ],
         ),

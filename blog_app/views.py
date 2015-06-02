@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 from django.views import generic
 
 from .models import Post, Comment
@@ -13,7 +14,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published posts."""
-        return Post.objects.order_by('-pub_date')[:5]
+        return Post.objects.filter(pub_date__lte=timezone.now).order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DetailView):
