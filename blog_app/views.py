@@ -21,6 +21,9 @@ class DetailView(generic.DetailView):
     model = Post
     template_name = 'blog_app/detail.html'
 
+    def get_queryset(self):
+        return Post.objects.filter(pub_date__lte=timezone.now())
+
 
 class ResultsView(generic.DetailView):
     model = Post
