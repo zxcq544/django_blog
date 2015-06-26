@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import *
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 

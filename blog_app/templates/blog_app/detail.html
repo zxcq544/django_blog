@@ -1,21 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-<h1>{{ post.post_text }}</h1>
+{% extends "blog_app/template.html" %}
+{% block content %}
+    <h1>{{ post.post_text }}</h1>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'blog_app:vote' post.id %}" method="post">
-    {% csrf_token %}
-    {% for comment in post.comment_set.all %}
-        <input type="radio" name="comment" id="comment{{ forloop.counter }}" value="{{ comment.id }}"/>
-        <label for="comment{{ forloop.counter }}">{{ comment.comment_text }}</label><br/>
-    {% endfor %}
-    <input type="submit" value="Vote"/>
-</form>
-</body>
-</html>
+    <form action="{% url 'blog_app:vote' post.id %}" method="post">
+        {% csrf_token %}
+        {% for comment in post.comment_set.all %}
+            <input type="radio" name="comment" id="comment{{ forloop.counter }}" value="{{ comment.id }}"/>
+            <label for="comment{{ forloop.counter }}">{{ comment.comment_text }}</label><br/>
+        {% endfor %}
+        <input type="submit" value="Vote"/>
+    </form>
+{% endblock %}
